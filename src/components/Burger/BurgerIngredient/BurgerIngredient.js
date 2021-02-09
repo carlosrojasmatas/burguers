@@ -31,6 +31,9 @@ class BurgerIngredient extends Component {
             case('bacon'):
                     ingredient = <div className={classes.Bacon}></div>
                     break;
+            default:
+                console.log("wrong ingredient");
+                break;
         }
     
         return ingredient;

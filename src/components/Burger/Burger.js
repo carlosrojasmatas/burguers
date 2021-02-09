@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './Burger.module.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient'
-import { array } from 'prop-types';
 
 const burger = (props) => {
     let mapIngredientTag = (i) => {
