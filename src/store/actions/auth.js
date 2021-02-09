@@ -14,7 +14,6 @@ export const authSuccess = (userId,token) => {
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
         userId: userId
-
     };
 };
 

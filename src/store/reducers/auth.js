@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import {updateObject} from '../utility';
+import {updateObject} from '../../shared/utility';
 
 const initialState = {
     token:null,
@@ -28,6 +28,7 @@ const authFail = (state,error) => {
 }
 
 const authLogout = (state) => {
+    console.log("login out");
     return updateObject(state,{token:null,userId:null});
 }
 
@@ -35,7 +36,7 @@ const setAuthRedirectPath = (state,action)=>{
     return updateObject(state,{authRedirectPath: action.path});
 }
 
-const reducer = (state= initialState,action) =>{
+const reducer = (state = initialState,action) =>{
 
     switch(action.type){
         case actionTypes.AUTH_START: return authStart(state,action);

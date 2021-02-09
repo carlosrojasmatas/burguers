@@ -6,7 +6,7 @@ import classes from './Auth.module.css';
 import * as actions from '../../store/actions/index';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-
+import {updateObject, validateFields} from '../../shared/utility';
 
 class Auth extends Component {
 
@@ -50,44 +50,15 @@ class Auth extends Component {
         }
     }
 
-     validate(value,rules){
-        let isValid = true;
-        
-        if(rules.required){
-            isValid = value.trim() !==  '' && isValid;
-        }
-
-        if(rules.minLenght){
-            isValid = value.length >= rules.minLenght && isValid;
-        }
-
-        if(rules.maxLength){
-            isValid = value.length <= rules.maxLength && isValid;
-        }
-
-        if (rules.isEmail) {
-            const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-            isValid = pattern.test(value) && isValid
-        }
-
-        if (rules.isNumeric) {
-            const pattern = /^\d+$/;
-            isValid = pattern.test(value) && isValid
-        }
-
-        return isValid;
-    }
-
     inputChangeHandler = (event,controlName) =>{
-        const updatedControls = {
-            ...this.state.controls,
-            [controlName]:{
-                ...this.state.controls[controlName],
+        const updatedControls = updateObject(this.state.controls,{
+            [controlName]:updateObject(this.state.controls[controlName],{
                 value: event.target.value,
-                valid : this.validate(event.target.value,this.state.controls[controlName].validation),
+                valid : validateFields(event.target.value,this.state.controls[controlName].validation),
                 touched:true
-            }
-        }
+            })
+        });
+
         this.setState({controls:updatedControls});
     };
 
@@ -175,6 +146,8 @@ const mapStateToProps = state => {
     return {
         loading: state.auth.loading,
         error:  state.auth.error,
+        token: state.auth.token,
+        user: state.auth.userId,
         isAuthenticated: state.auth.token !== null,
         buildingBurguer: state.burguerBuilder.building,
         authRedirectPath: state.auth.authRedirectPath
