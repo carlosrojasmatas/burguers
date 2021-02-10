@@ -32,7 +32,6 @@ class BurgerIngredient extends Component {
                     ingredient = <div className={classes.Bacon}></div>
                     break;
             default:
-                console.log("wrong ingredient");
                 break;
         }
     

@@ -36,7 +36,7 @@ const setIngredients = (state,action) => {
                 ingredients:{
                     salad: action.ingredients.salad,
                     bacon: action.ingredients.bacon,
-                    cheese: action. ingredients.cheese,
+                    cheese: action.ingredients.cheese,
                     meat: action.ingredients.meat
                 },
                 totalPrice: 4,

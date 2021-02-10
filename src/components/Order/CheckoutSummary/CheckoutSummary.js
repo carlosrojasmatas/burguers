@@ -4,7 +4,6 @@ import Button from '../../UI/Button/Button';
 import classes from './CheckoutSummary.module.css';
 
 const checkoutSummary = (props) => {
-    var click = () =>{alert('rekla')};
 
     return(
         <div className={classes.CheckoutSummary}>

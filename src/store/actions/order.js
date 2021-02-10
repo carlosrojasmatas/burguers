@@ -44,7 +44,6 @@ export const purchaseInit = () => {
 }
 
 export const fetchOrdersSuccess=(orders) => {
-    console.log("orders success");
     return{
         type:actionTypes.FETCH_ORDERS_SUCCESS,
         orders:orders
@@ -60,7 +59,6 @@ export const fetchOrdersFail=(error) => {
 };
 
 export const fetchOrdersStart= () => {
-    console.log("orders start");
     return {
         type:actionTypes.FETCH_ORDERS_START
     };
